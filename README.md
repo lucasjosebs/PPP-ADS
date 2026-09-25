@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="frontend/assets/logo_Farepet.png" alt="Farepet" width="200">
+  <img src="frontend/assets/logo_bg_Farepet_rounded.png" alt="Farepet" width="200">
 </p>
 
 # 🐾 Farepet
