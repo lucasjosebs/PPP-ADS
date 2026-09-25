@@ -4,7 +4,7 @@
 
 Projeto de Prática Profissional em Análise e Desenvolvimento de Sistemas (Faculdade Grau, disciplina *Projetos Profissionalizantes*).
 
-**Status:** 🚧 Em desenvolvimento (Sprint 0 — Kickoff)
+**Status:** 🚧 Em desenvolvimento (Etapa 3 — Organização de tarefas concluída, iniciando Etapa 4 — Desenvolvimento)
 
 ---
 
@@ -43,27 +43,36 @@ A cidade inicial de cobertura é **São Paulo (SP)**.
 
 ```
 PPP-ADS/
-├── docs/          # Project Charter, personas, relatório
+├── docs/          # Project Charter, personas e user stories.
 ├── frontend/      # Páginas, estilos e scripts do site
 ├── backend/       # API (Node.js + Express)
 ├── LICENSE
 └── README.md
 ```
 
-> A estrutura será criada e ajustada conforme o projeto avança.
+> A estrutura de `frontend/` e `backend/` será criada no início da Etapa 4 (Desenvolvimento).
+
+## 📄 Documentação do projeto
+
+| Documento | Descrição |
+|---|---|
+| [Project Charter](docs/Project_Charter_Farepet.md) | Escopo, objetivos, papéis, cronograma e riscos |
+| [Personas e User Stories](docs/Personas_UserStories_Farepet.pdf) | Personas do MVP e as 5 user stories priorizadas |
+
+**Quadro Kanban (GitHub Projects):** https://github.com/users/lucasjosebs/projects/1
 
 ## ▶️ Como executar
 
-*Será documentado assim que a primeira versão funcional estiver pronta (Sprint 1).*
+*Será documentado assim que a primeira versão funcional estiver pronta (Etapa 4).*
 
 ## 🗺️ Roadmap
 
 | Etapa | Foco | Status |
 |---|---|---|
-| 1 | Kickoff: Project Charter e repositório | 🔄 Em andamento |
-| 2 | Concepção: personas, user stories e MVP | ⏳ Pendente |
-| 3 | Organização: backlog e quadro Kanban | ⏳ Pendente |
-| 4 | Desenvolvimento em sprints | ⏳ Pendente |
+| 1 | Kickoff: Project Charter e repositório | ✅ Concluído |
+| 2 | Concepção: personas, user stories e MVP | ✅ Concluído |
+| 3 | Organização: backlog e quadro Kanban | ✅ Concluído |
+| 4 | Desenvolvimento em sprints | 🔄 Em andamento |
 | 5 | Testes e validação | ⏳ Pendente |
 | 6 | Encerramento: relatório e apresentação | ⏳ Pendente |
 
