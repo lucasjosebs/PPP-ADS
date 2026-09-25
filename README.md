@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="frontend/assets/logo_Farepet.png" alt="Farepet" width="200">
+</p>
+
 # 🐾 Farepet
 
 > **Farejar + Pet**: uma plataforma web para ajudar a reunir animais perdidos com seus tutores e encontrar um lar para animais abandonados.
