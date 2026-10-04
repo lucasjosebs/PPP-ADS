@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Anúncio - Farepet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="logo">
+            <img src="../assets/logo_Farepet.png" alt="Farepet Logo" width="100">
+        </div>
+        <nav class="nav-links">
+            <div class="dropdown">
+                <a href="../index.html" class="dropdown-toggle">Início ▾</a>
+                <div class="dropdown-menu">
+                    <a href="../index.html#anuncios">Anúncios</a>
+                    <a href="../index.html#adocoes">Adoções</a>
+                </div>
+            </div>
+            <a href="cadastro.html">Cadastro</a>
+        </nav>
+    </header>
+    <main>
+        <section class="form-section">
+            <div class="form-header">
+                <h1>Cadastrar Anúncio</h1>
+                <p>Preencha os dados abaixo para registrar um animal perdido, encontrado ou para adoção.</p>
+            </div>
+
+            <form id="cadastro-form" class="cadastro-form">
+                
+                <!-- Tipo de Anúncio -->
+                <fieldset>
+                    <legend>Tipo de Anúncio</legend>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="tipo_anuncio" value="perdido" checked> Perdido
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_anuncio" value="achado"> Achado
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo_anuncio" value="adocao"> Adoção
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- Dados do Animal -->
+                <fieldset>
+                    <legend>Dados do Animal</legend>
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="especie">Espécie *</label>
+                            <select id="especie" name="especie" required>
+                                <option value="" disabled selected>Selecione...</option>
+                                <option value="Cão">Cão</option>
+                                <option value="Gato">Gato</option>
+                                <option value="Aves">Ave</option>
+                                <option value="Roedor">Roedor</option>
+                                <option value="Réptil">Réptil</option>
+                                <option value="Outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group flex-2">
+                            <label for="nome_animal">Nome do animal (se souber)</label>
+                            <input type="text" id="nome_animal" name="nome_animal" placeholder="Ex: Rex, Mel..." pattern="^[A-Za-zÀ-ÿ\s]{2,50}$" title="Apenas letras, mínimo de 2 caracteres.">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="foto_animal">Foto do animal</label>
+                        <div class="file-upload">
+                            <input type="file" id="foto_animal" name="foto_animal" accept="image/*">
+                            <p class="file-hint" id="file-name-display">Clique ou arraste uma imagem aqui</p>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Localização Separada -->
+                <fieldset>
+                    <legend>Localização (Visto por último)</legend>
+                    
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="cep">CEP</label>
+                            <input type="text" id="cep" name="cep" placeholder="00000-000" pattern="\d{5}-?\d{3}" title="Formato válido: 12345-678 ou 12345678">
+                        </div>
+                        <div class="form-group flex-2">
+                            <label for="rua">Rua / Avenida *</label>
+                            <input type="text" id="rua" name="rua" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="numero">Número</label>
+                            <input type="text" id="numero" name="numero" placeholder="Ex: 123, S/N">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" id="complemento" name="complemento" placeholder="Apto, Bloco...">
+                        </div>
+                        <div class="form-group flex-2">
+                            <label for="cidade">Cidade *</label>
+                            <input type="text" id="cidade" name="cidade" required>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Dados de Contato -->
+                <fieldset class="no-border">
+                    <legend>Dados para Contato</legend>
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="telefone">Telefone / Celular</label>
+                            <input type="tel" id="telefone" name="telefone" placeholder="(00) 90000-0000" pattern="^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$" title="Formato válido: (11) 99999-9999">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="seu@email.com">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <button type="submit" class="btn btn-primary btn-submit">Publicar Anúncio</button>
+            </form>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Coluna 1: Logo e Sobre -->
+            <div class="footer-col info-col">
+                <div class="logo">
+                    <img src="../assets/logo_Farepet.png" alt="Farepet Logo" width="120">
+                </div>
+            </div>
+
+            <!-- Coluna 2: Navegação -->
+            <div class="footer-col">
+                <h3>Navegação</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#anuncios">Anúncios</a></li>
+                    <li><a href="index.html#adocoes">Adoções</a></li>
+                    <li><a href="html/cadastro.html">Cadastro de Animal</a></li>
+                </ul>
+            </div>
+
+            <!-- Coluna 3: Contatos Fictícios -->
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <ul class="contact-list">
+                    <li>📞 (11) 99999-9999</li>
+                    <li>✉️ contato@farepet.com.br</li>
+                    <li>📍 São Paulo, SP</li>
+                </ul>
+            </div>
+
+            <!-- Coluna 4: Redes Sociais -->
+            <div class="footer-col">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Farepet. Todos os direitos reservados (Projeto Fictício).</p>
+        </div>
+    </footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>

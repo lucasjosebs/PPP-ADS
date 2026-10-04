@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farepet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="logo">
+            <img src="assets/logo_Farepet.png" alt="Farepet Logo" width="100">
+        </div>
+        <nav class="nav-links">
+            <div class="dropdown">
+                <a href="index.html" class="dropdown-toggle">Início ▾</a>
+                <div class="dropdown-menu">
+                    <a href="index.html#anuncios">Anúncios</a>
+                    <a href="index.html#adocoes">Adoções</a>
+                </div>
+            </div>
+            <a href="html/cadastro.html">Cadastro</a>
+        </nav>
+        <div class="nav-buttons">
+            <button class="btn btn-secondary">
+              <a href="html/cadastro.html" style="color: inherit; text-decoration: none;">Encontrei um animal</a>
+            </button>
+            <button class="btn btn-primary">
+              <a href="html/cadastro.html" style="color: inherit; text-decoration: none;">Perdi meu pet</a>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Hero -->
+        <section class="hero">
+            <h1>Ajude um animal a voltar para casa.</h1>
+            <p>Cadastre ou encontre avisos de animais perdidos e encontrados em São Paulo, com<br>opção de cadastro anônimo.</p>
+            
+            <div class="map-container">
+                <img class="map-placeholder" src="assets/mapa_exemplo_Farepet.png" alt="Mapa de São Paulo com ícones de localização de animais perdidos e encontrados">
+            </div>
+        </section>
+
+        <!-- Seção Anúncios Recentes -->
+        <section class="recent-ads" id="anuncios">
+            <div class="section-header">
+                <h2>Anúncios recentes</h2>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="todos">Todos</button>
+                    <button class="filter-btn" data-filter="perdido">Perdidos</button>
+                    <button class="filter-btn" data-filter="achado">Encontrados</button>
+                </div>
+            </div>
+
+            <div class="cards-grid" id="ads-grid">
+                <!-- Cards estáticos com data-attributes para o Modal -->
+                <div class="card" data-status="perdido" data-nome="Theo" data-especie="Cão" data-local="Pinheiros, São Paulo" data-contato="(11) 99999-9999" data-img="">
+                    <div class="card-image-placeholder">Foto do animal</div>
+                    <div class="card-content">
+                        <h3>Theo</h3>
+                        <p>Pinheiros</p>
+                        <span class="tag tag-perdido">Perdido</span>
+                    </div>
+                </div>
+
+                <div class="card" data-status="achado" data-nome="Gato cinza sem coleira" data-especie="Gato" data-local="Vila Madalena, São Paulo" data-contato="(11) 98888-8888" data-img="">
+                    <div class="card-image-placeholder">Foto do animal</div>
+                    <div class="card-content">
+                        <h3>Gato cinza sem coleira</h3>
+                        <p>Vila Madalena</p>
+                        <span class="tag tag-encontrado">Encontrado</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Para Adoção -->
+        <section class="adoption" id="adocoes">
+            <div class="section-header">
+                <h2>Para adoção</h2>
+            </div>
+
+            <div class="cards-grid" id="adoption-grid">
+                <!-- Card estático -->
+                <div class="card" data-status="adocao" data-nome="Gato SRD" data-especie="Gato" data-local="Abrigo parceiro - Lapa, São Paulo" data-contato="abrigo@email.com" data-img="">
+                    <div class="card-image-placeholder">Foto do animal</div>
+                    <div class="card-content">
+                        <h3>Gato SRD</h3>
+                        <p>Abrigo parceiro - Lapa</p>
+                        <span class="tag tag-adocao">Adoção</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Estrutura do Modal -->
+    <div id="pet-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 id="modal-nome">Nome do Animal</h2>
+                <span id="modal-tag" class="tag">Status</span>
+            </div>
+            <div class="modal-body">
+                <div id="modal-img-container" class="modal-image">
+                    <!-- A imagem ou placeholder será injetada aqui -->
+                </div>
+                <div class="modal-info">
+                    <p><strong>Espécie:</strong> <span id="modal-especie"></span></p>
+                    <p><strong>Local:</strong> <span id="modal-local"></span></p>
+                    <p><strong>Contato:</strong> <span id="modal-contato"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Coluna 1: Logo e Sobre -->
+            <div class="footer-col info-col">
+                <div class="logo">
+                    <img src="assets/logo_Farepet.png" alt="Farepet Logo" width="120">
+                </div>
+            </div>
+
+            <!-- Coluna 2: Navegação -->
+            <div class="footer-col">
+                <h3>Navegação</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#anuncios">Anúncios</a></li>
+                    <li><a href="index.html#adocoes">Adoções</a></li>
+                    <li><a href="html/cadastro.html">Cadastro de Animal</a></li>
+                </ul>
+            </div>
+
+            <!-- Coluna 3: Contatos Fictícios -->
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <ul class="contact-list">
+                    <li>📞 (11) 99999-9999</li>
+                    <li>✉️ contato@farepet.com.br</li>
+                    <li>📍 São Paulo, SP</li>
+                </ul>
+            </div>
+
+            <!-- Coluna 4: Redes Sociais -->
+            <div class="footer-col">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Farepet. Todos os direitos reservados (Projeto Fictício).</p>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>
