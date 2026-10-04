@@ -8,7 +8,7 @@
 
 Projeto de Prática Profissional em Análise e Desenvolvimento de Sistemas (Faculdade Grau, disciplina *Projetos Profissionalizantes*).
 
-**Status:** 🚧 Em desenvolvimento (Etapa 3 — Organização de tarefas concluída, iniciando Etapa 4 — Desenvolvimento)
+**Status:** 🚧 Em desenvolvimento (Etapa 4 — Desenvolvimento: Layout base do Front-end concluído)
 
 ---
 
@@ -16,42 +16,47 @@ Projeto de Prática Profissional em Análise e Desenvolvimento de Sistemas (Facu
 
 Quando um animal some, o tempo é decisivo. Hoje os avisos ficam espalhados em grupos de redes sociais, cartazes e mensagens que se perdem rápido. O **Farepet** centraliza esses avisos em um mapa, permitindo que:
 
-- **Tutores** cadastrem o animal perdido, com fotos, descrição, contato e o local onde ele foi visto pela última vez.
-- **Quem encontrou** um animal cadastre onde ele foi localizado, com a opção de fazer isso **de forma anônima**.
-- **Interessados em adotar** consultem os animais encontrados em situação de abandono.
+- **Tutores** cadastrem o animal perdido, com fotos, descrição, contato e o local onde ele foi visto pela última vez.[cite: 6]
+- **Quem encontrou** um animal cadastre onde ele foi localizado, com a opção de fazer isso **de forma anônima**.[cite: 6]
+- **Interessados em adotar** consultem os animais encontrados em situação de abandono.[cite: 6]
 
-A cidade inicial de cobertura é **São Paulo (SP)**.
+A cidade inicial de cobertura é **São Paulo (SP)**.[cite: 6]
 
 ## ✨ Funcionalidades do MVP
 
-- [ ] Cadastro de animal **perdido** (foto, descrição, local no mapa, contato)
-- [ ] Cadastro de animal **encontrado** (com opção anônima)
-- [ ] Visualização dos anúncios em **mapa e lista**, com filtros (tipo, espécie)
-- [ ] Página de **detalhes** do anúncio
-- [ ] Seção de **animais para adoção**
+- [x] Cadastro de animal **perdido** (formulário, foto, local, contato - *mockado via LocalStorage*)
+- [x] Cadastro de animal **encontrado** (com opção anônima - *mockado via LocalStorage*)
+- [ ] Visualização dos anúncios em **mapa** e lista (Filtros e lista de cards funcionais; mapa pendente de integração com Leaflet)
+- [x] Página/Modal de **detalhes** do anúncio (com informações dinâmicas e foto)
+- [x] Seção de **animais para adoção**
 
-**Fora do MVP (ideias futuras):** contas de usuário, notificações, cruzamento automático entre "perdido" e "encontrado", outras cidades.
+**Fora do MVP (ideias futuras):** contas de usuário, notificações, cruzamento automático entre "perdido" e "encontrado", outras cidades.[cite: 6]
 
 ## 🛠️ Tecnologias
 
-| Camada | Tecnologia (planejada) |
+| Camada | Tecnologia |
 |---|---|
-| Front-end | HTML, CSS e JavaScript |
-| Mapa | Leaflet + OpenStreetMap |
-| Back-end | Node.js + Express |
+| Front-end | HTML5, CSS3, JavaScript (Vanilla) e LocalStorage |
+| Mapa | Leaflet + OpenStreetMap (A implementar) |
+| Back-end | Node.js + Express (A implementar) |
 | Banco de dados | A definir (SQLite ou DynamoDB) |
-| Armazenamento de fotos | Amazon S3 |
-| Hospedagem | AWS |
+| Armazenamento de fotos | Amazon S3 (Planejado) |
+| Hospedagem | AWS (Planejado) |
 
 ## 📁 Estrutura do repositório
 
-```
-PPP-ADS/
+```text
+PPP_ADS/
 ├── docs/          # Project Charter, personas e user stories.
-├── frontend/      # Páginas, estilos e scripts do site
-├── backend/       # API (Node.js + Express)
-├── LICENSE
-└── README.md
+├── frontend/      # Front-end da aplicação
+│   ├── assets/    # Imagens e logotipos do projeto
+│   ├── css/       # Arquivos de estilização (style.css)
+│   ├── html/      # Páginas secundárias (cadastro.html)
+│   ├── js/        # Scripts e lógicas da página (script.js)
+│   └── index.html # Página principal (Home)
+├── backend/       # API (Node.js + Express) - Vazio no momento
+├── LICENSE        # Licença do projeto
+└── README.md      # Documentação principal
 ```
 
 > A estrutura de `frontend/` e `backend/` será criada no início da Etapa 4 (Desenvolvimento).
@@ -67,7 +72,17 @@ PPP-ADS/
 
 ## ▶️ Como executar
 
-*Será documentado assim que a primeira versão funcional estiver pronta (Etapa 4).*
+Como o projeto encontra-se na fase de front-end com dados simulados via LocalStorage, você pode executá-lo diretamente no seu navegador, sem necessidade de configurar um servidor local para a API.
+
+1. Clone este repositório em sua máquina:
+```bash
+git clone [https://github.com/lucasjosebs/PPP-ADS.git](https://github.com/lucasjosebs/PPP-ADS.git)
+```
+2. Navegue até a pasta de frontend do projeto:
+```bash
+cd PPP-ADS/frontend
+```
+3. Abra o arquivo `index.html` em qualquer navegador web (Chrome, Firefox, Edge, etc.).
 
 ## 🗺️ Roadmap
 
