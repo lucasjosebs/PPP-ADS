@@ -364,7 +364,8 @@ main {
     justify-content: center;
     color: var(--text-dark);
     font-family: 'Fraunces', serif;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
 }
 
@@ -639,4 +640,70 @@ main {
     .academic-note {
         margin: 15px auto;
     }
+}
+
+/* =========================================
+   Filtros Extras e Paginação
+   ========================================= */
+.extra-filters {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.filter-input {
+    padding: 10px 14px;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    outline: none;
+    flex: 1;
+    min-width: 200px;
+    background-color: #fff;
+    transition: 0.3s;
+}
+
+.filter-input:focus {
+    border-color: var(--btn-primary-bg);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.page-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #E0E0E0;
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: 0.2s;
+}
+
+.page-btn:hover {
+    background-color: var(--btn-secondary-bg);
+    color: var(--text-dark);
+}
+
+.page-btn.active {
+    background-color: var(--btn-primary-bg);
+    color: #fff;
+    border-color: var(--btn-primary-bg);
 }
