@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initFilters();
     initModal();
     initForm();
+    initMobileMenu();
     renderAll(); // Inicia a renderização dinâmica e paginação
 });
 
@@ -250,4 +251,42 @@ function salvarAnuncio(formData, base64Img) {
 
     alert("Anúncio cadastrado com sucesso!");
     window.location.href = "../index.html"; 
+}
+
+// --- Lógica do Menu Hamburger (Mobile) ---
+function initMobileMenu() {
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navMenu = document.getElementById('nav-menu');
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdown = document.querySelector('.dropdown');
+
+    if (!hamburgerBtn || !navMenu) return;
+
+    // Alterna a abertura do menu e animação do botão
+    hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Lógica para abrir o dropdown no mobile ao clicar (invés de hover)
+    if (dropdownToggle && dropdown) {
+        dropdownToggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            }
+        });
+    }
+
+    // Fecha o menu se clicar em um link interno (opcional)
+    const links = navMenu.querySelectorAll('a:not(.dropdown-toggle)');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                hamburgerBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+                dropdown.classList.remove('active');
+            }
+        });
+    });
 }

@@ -707,3 +707,123 @@ main {
     color: #fff;
     border-color: var(--btn-primary-bg);
 }
+
+/* =========================================
+   Menu Hamburger e Responsividade
+   ========================================= */
+
+/* Estilo base do Container de Navegação no Desktop */
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Oculta o botão hamburger no Desktop */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001; /* Garante que fique acima do menu aberto */
+}
+
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-dark);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Regras para Smartphones / Tablets */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    /* Esconde o container jogando-o para fora da tela */
+    .nav-container {
+        position: absolute;
+        top: 75px; /* Altura do header */
+        left: -100%;
+        width: 100%;
+        background-color: var(--bg-main);
+        flex-direction: column;
+        padding: 30px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        gap: 20px;
+    }
+
+    /* Classe ativada pelo JS para mostrar o menu */
+    .nav-container.active {
+        left: 0;
+    }
+
+    /* Reorganiza links e botões para coluna */
+    .nav-links {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        width: 80%;
+        gap: 15px;
+        margin: 0 auto;
+    }
+
+    .nav-buttons .btn {
+        width: 100%;
+    }
+
+    /* Ajuste do Dropdown no Mobile */
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background-color: transparent;
+        display: none; /* Controlado via JS no mobile */
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        padding: 10px 0 0 0;
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+
+    /* Animação do Ícone Hamburger transformando em X */
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Ajustes extras de responsividade para o resto do site */
+    .header {
+        padding: 15px 5%;
+    }
+    .hero h1 {
+        font-size: 32px;
+    }
+    .section-header {
+        align-items: stretch !important;
+    }
+    .extra-filters {
+        flex-direction: column;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
