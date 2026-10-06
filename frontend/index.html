@@ -48,54 +48,59 @@
 
         <!-- Seção Anúncios Recentes -->
         <section class="recent-ads" id="anuncios">
-            <div class="section-header">
-                <h2>Anúncios recentes</h2>
-                <div class="filters">
-                    <button class="filter-btn active" data-filter="todos">Todos</button>
-                    <button class="filter-btn" data-filter="perdido">Perdidos</button>
-                    <button class="filter-btn" data-filter="achado">Encontrados</button>
+            <div class="section-header" style="flex-direction: column; align-items: flex-start; gap: 15px;">
+                <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; flex-wrap: wrap; gap: 15px;">
+                    <h2>Anúncios recentes</h2>
+                    <div class="filters">
+                        <button class="filter-btn active" data-filter="todos">Todos</button>
+                        <button class="filter-btn" data-filter="perdido">Perdidos</button>
+                        <button class="filter-btn" data-filter="achado">Encontrados</button>
+                    </div>
+                </div>
+                <!-- Novos filtros -->
+                <div class="extra-filters">
+                    <select id="filtro-especie-ads" class="filter-input">
+                        <option value="">Todas as Espécies</option>
+                        <option value="Cão">Cão</option>
+                        <option value="Gato">Gato</option>
+                        <option value="Aves">Aves</option>
+                        <option value="Roedor">Roedor</option>
+                        <option value="Réptil">Réptil</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                    <input type="text" id="filtro-cidade-ads" class="filter-input" placeholder="Buscar por cidade ou bairro...">
                 </div>
             </div>
 
-            <div class="cards-grid" id="ads-grid">
-                <!-- Cards estáticos com data-attributes para o Modal -->
-                <div class="card" data-status="perdido" data-nome="Theo" data-especie="Cão" data-local="Pinheiros, São Paulo" data-contato="(11) 99999-9999" data-img="">
-                    <div class="card-image-placeholder">Foto do animal</div>
-                    <div class="card-content">
-                        <h3>Theo</h3>
-                        <p>Pinheiros</p>
-                        <span class="tag tag-perdido">Perdido</span>
-                    </div>
-                </div>
-
-                <div class="card" data-status="achado" data-nome="Gato cinza sem coleira" data-especie="Gato" data-local="Vila Madalena, São Paulo" data-contato="(11) 98888-8888" data-img="">
-                    <div class="card-image-placeholder">Foto do animal</div>
-                    <div class="card-content">
-                        <h3>Gato cinza sem coleira</h3>
-                        <p>Vila Madalena</p>
-                        <span class="tag tag-encontrado">Encontrado</span>
-                    </div>
-                </div>
-            </div>
+            <!-- Grid vazio para o JS preencher -->
+            <div class="cards-grid" id="ads-grid"></div>
+            <!-- Paginação -->
+            <div class="pagination" id="paginacao-ads"></div>
         </section>
 
         <!-- Seção Para Adoção -->
         <section class="adoption" id="adocoes">
-            <div class="section-header">
+            <div class="section-header" style="flex-direction: column; align-items: flex-start; gap: 15px;">
                 <h2>Para adoção</h2>
-            </div>
-
-            <div class="cards-grid" id="adoption-grid">
-                <!-- Card estático -->
-                <div class="card" data-status="adocao" data-nome="Gato SRD" data-especie="Gato" data-local="Abrigo parceiro - Lapa, São Paulo" data-contato="abrigo@email.com" data-img="">
-                    <div class="card-image-placeholder">Foto do animal</div>
-                    <div class="card-content">
-                        <h3>Gato SRD</h3>
-                        <p>Abrigo parceiro - Lapa</p>
-                        <span class="tag tag-adocao">Adoção</span>
-                    </div>
+                <!-- Novos filtros -->
+                <div class="extra-filters">
+                    <select id="filtro-especie-adocao" class="filter-input">
+                        <option value="">Todas as Espécies</option>
+                        <option value="Cão">Cão</option>
+                        <option value="Gato">Gato</option>
+                        <option value="Aves">Aves</option>
+                        <option value="Roedor">Roedor</option>
+                        <option value="Réptil">Réptil</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                    <input type="text" id="filtro-cidade-adocao" class="filter-input" placeholder="Buscar por cidade ou bairro...">
                 </div>
             </div>
+
+            <!-- Grid vazio para o JS preencher -->
+            <div class="cards-grid" id="adoption-grid"></div>
+            <!-- Paginação -->
+            <div class="pagination" id="paginacao-adocao"></div>
         </section>
     </main>
 

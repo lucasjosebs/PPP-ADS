@@ -16,11 +16,11 @@ Projeto de Prática Profissional em Análise e Desenvolvimento de Sistemas (Facu
 
 Quando um animal some, o tempo é decisivo. Hoje os avisos ficam espalhados em grupos de redes sociais, cartazes e mensagens que se perdem rápido. O **Farepet** centraliza esses avisos em um mapa, permitindo que:
 
-- **Tutores** cadastrem o animal perdido, com fotos, descrição, contato e o local onde ele foi visto pela última vez.[cite: 6]
-- **Quem encontrou** um animal cadastre onde ele foi localizado, com a opção de fazer isso **de forma anônima**.[cite: 6]
-- **Interessados em adotar** consultem os animais encontrados em situação de abandono.[cite: 6]
+- **Tutores** cadastrem o animal perdido, com fotos, descrição, contato e o local onde ele foi visto pela última vez.
+- **Quem encontrou** um animal cadastre onde ele foi localizado, com a opção de fazer isso **de forma anônima**.
+- **Interessados em adotar** consultem os animais encontrados em situação de abandono.
 
-A cidade inicial de cobertura é **São Paulo (SP)**.[cite: 6]
+A cidade inicial de cobertura é **São Paulo (SP)**.
 
 ## ✨ Funcionalidades do MVP
 
@@ -30,7 +30,7 @@ A cidade inicial de cobertura é **São Paulo (SP)**.[cite: 6]
 - [x] Página/Modal de **detalhes** do anúncio (com informações dinâmicas e foto)
 - [x] Seção de **animais para adoção**
 
-**Fora do MVP (ideias futuras):** contas de usuário, notificações, cruzamento automático entre "perdido" e "encontrado", outras cidades.[cite: 6]
+**Fora do MVP (ideias futuras):** contas de usuário, notificações, cruzamento automático entre "perdido" e "encontrado", outras cidades.
 
 ## 🛠️ Tecnologias
 
