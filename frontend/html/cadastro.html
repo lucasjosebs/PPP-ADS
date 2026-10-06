@@ -13,18 +13,37 @@
     <!-- Cabeçalho -->
     <header class="header">
         <div class="logo">
-            <img src="../assets/logo_Farepet.png" alt="Farepet Logo" width="100">
+            <img src="assets/logo_Farepet.png" alt="Farepet Logo" width="100">
         </div>
-        <nav class="nav-links">
-            <div class="dropdown">
-                <a href="../index.html" class="dropdown-toggle">Início ▾</a>
-                <div class="dropdown-menu">
-                    <a href="../index.html#anuncios">Anúncios</a>
-                    <a href="../index.html#adocoes">Adoções</a>
+        
+        <!-- Botão Hamburger -->
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Container agrupador para o menu mobile -->
+        <div class="nav-container" id="nav-menu">
+            <nav class="nav-links">
+                <div class="dropdown">
+                    <a href="index.html" class="dropdown-toggle">Início ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="index.html#anuncios">Anúncios</a>
+                        <a href="index.html#adocoes">Adoções</a>
+                    </div>
                 </div>
+                <a href="html/cadastro.html">Cadastro</a>
+            </nav>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary">
+                  <a href="html/cadastro.html" style="color: inherit; text-decoration: none;">Encontrei um animal</a>
+                </button>
+                <button class="btn btn-primary">
+                  <a href="html/cadastro.html" style="color: inherit; text-decoration: none;">Perdi meu pet</a>
+                </button>
             </div>
-            <a href="cadastro.html">Cadastro</a>
-        </nav>
+        </div>
     </header>
     <main>
         <section class="form-section">
