@@ -14,7 +14,7 @@ Projeto de Prática Profissional em Análise e Desenvolvimento de Sistemas (Facu
 
 ## 📌 Sobre o projeto
 
-Quando um animal some, o tempo é decisivo[cite: 8]. Hoje os avisos ficam espalhados em grupos de redes sociais, cartazes e mensagens que se perdem rápido[cite: 8]. O **Farepet** centraliza esses avisos em um mapa, permitindo que[cite: 8]:
+Quando um animal some, o tempo é decisivo. Hoje os avisos ficam espalhados em grupos de redes sociais, cartazes e mensagens que se perdem rápido. O **Farepet** centraliza esses avisos em um mapa, permitindo que:
 
 - **Tutores** cadastrem o animal perdido, com fotos, descrição, contato e o local onde ele foi visto pela última vez.
 - **Quem encontrou** um animal cadastre onde ele foi localizado, com a opção de fazer isso **de forma anônima**.
