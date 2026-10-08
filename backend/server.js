@@ -1,4 +1,3 @@
-// backend/server.js
 const express = require('express');
 const cors = require('cors');
 const { openDb, initDb } = require('./database');
@@ -6,10 +5,9 @@ const { openDb, initDb } = require('./database');
 const app = express();
 
 // Middlewares
-app.use(cors()); // Permite que o frontend (em outra porta ou domínio) acesse a API
-app.use(express.json({ limit: '10mb' })); // Limite aumentado para aceitar imagens em Base64
+app.use(cors()); 
+app.use(express.json({ limit: '10mb' })); 
 
-// Inicializa o banco de dados
 initDb();
 
 // ==========================================
@@ -20,7 +18,6 @@ initDb();
 app.get('/api/anuncios', async (req, res) => {
     try {
         const db = await openDb();
-        // Agora busca apenas os anúncios previamente aprovados pelo admin
         const anuncios = await db.all("SELECT * FROM anuncios WHERE status_publicacao = 'aprovado' ORDER BY data_criacao DESC");
         res.json(anuncios);
     } catch (error) {
@@ -55,7 +52,6 @@ app.post('/api/anuncios', async (req, res) => {
 // Rota de Login simples (Para ambiente académico)
 app.post('/api/admin/login', (req, res) => {
     const { usuario, senha } = req.body;
-    // Credenciais fixas para o projeto
     if (usuario === 'admin' && senha === 'farepet2026') {
         res.json({ success: true, token: 'admin-token-123' });
     } else {
@@ -67,8 +63,7 @@ app.post('/api/admin/login', (req, res) => {
 app.get('/api/admin/metricas', async (req, res) => {
     try {
         const db = await openDb();
-        
-        // Faz a contagem diretamente no banco de dados de forma otimizada
+
         const pendentes = await db.get("SELECT COUNT(*) as count FROM anuncios WHERE status_publicacao = 'pendente'");
         const ativos = await db.get("SELECT COUNT(*) as count FROM anuncios WHERE status_publicacao = 'aprovado'");
         const perdidos = await db.get("SELECT COUNT(*) as count FROM anuncios WHERE tipo = 'perdido' AND status_publicacao = 'aprovado'");

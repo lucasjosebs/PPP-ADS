@@ -2,7 +2,6 @@ const CARDS_PER_PAGE = 6;
 let configAds = { status: 'todos', especie: '', cidade: '', page: 1 };
 let configAdocao = { especie: '', cidade: '', page: 1 };
 
-// Variável global para armazenar os dados vindos da API
 let anunciosGlobais = []; 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,12 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     carregarAnunciosDaAPI(); // Nova função de ligação ao Back-end
 });
 
-// --- Lógica de Ligação à API ---
 async function carregarAnunciosDaAPI() {
     const adsGrid = document.getElementById('ads-grid');
     const adoptionGrid = document.getElementById('adoption-grid');
     
-    // Evita chamadas desnecessárias se estivermos no formulário de registo
     if (!adsGrid && !adoptionGrid) return;
 
     try {
@@ -39,15 +36,12 @@ async function carregarAnunciosDaAPI() {
     }
 }
 
-// --- Lógica Principal de Filtragem e Paginação ---
 function renderAll() {
-    // 1. Filtrar Anúncios Recentes (Perdidos/Achados)
     let filteredAds = anunciosGlobais.filter(a => a.tipo === 'perdido' || a.tipo === 'achado');
     if (configAds.status !== 'todos') filteredAds = filteredAds.filter(a => a.tipo === configAds.status);
     if (configAds.especie) filteredAds = filteredAds.filter(a => a.especie.toLowerCase() === configAds.especie.toLowerCase());
     if (configAds.cidade) filteredAds = filteredAds.filter(a => a.cidade && a.cidade.toLowerCase().includes(configAds.cidade.toLowerCase()));
 
-    // 2. Filtrar Adoções
     let filteredAdocao = anunciosGlobais.filter(a => a.tipo === 'adocao');
     if (configAdocao.especie) filteredAdocao = filteredAdocao.filter(a => a.especie.toLowerCase() === configAdocao.especie.toLowerCase());
     if (configAdocao.cidade) filteredAdocao = filteredAdocao.filter(a => a.cidade && a.cidade.toLowerCase().includes(configAdocao.cidade.toLowerCase()));
@@ -92,7 +86,6 @@ function renderGridPaginated(gridId, pagId, data, config) {
     }
 }
 
-// Escutadores de Eventos dos Filtros
 function initFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(button => {
@@ -125,7 +118,6 @@ function criarElementoCard(anuncio) {
     const imgStyle = anuncio.imagem ? `style="background-image: url('${anuncio.imagem}');"` : '';
     const imgText = anuncio.imagem ? '' : 'Foto';
     
-    // Constrói a string do local
     const numeroStr = anuncio.numero && anuncio.numero !== 'S/N' ? `, ${anuncio.numero}` : '';
     const localCompleto = `${anuncio.rua}${numeroStr} - ${anuncio.cidade}`;
 
@@ -210,7 +202,6 @@ function initForm() {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Bloqueia o botão para evitar duplos envios
         const submitBtn = form.querySelector('.btn-submit');
         submitBtn.textContent = 'A processar...';
         submitBtn.disabled = true;
@@ -222,11 +213,9 @@ function initForm() {
             let base64Img = "";
             
             if (file) {
-                // Comprime a imagem para um máximo de 800x800px com 70% de qualidade (0.7)
                 base64Img = await comprimirImagem(file, 800, 800, 0.7);
             }
             
-            // Agora envia o formulário e a string comprimida para a função da API
             await enviarParaAPI(formData, base64Img, submitBtn);
             
         } catch (erro) {
@@ -238,7 +227,6 @@ function initForm() {
     });
 }
 
-// Substitui o antigo salvarAnuncio
 async function enviarParaAPI(formData, base64Img, submitBtn) {
     const rua = formData.get('rua');
     const numero = formData.get('numero') || 'S/N';
@@ -253,7 +241,6 @@ async function enviarParaAPI(formData, base64Img, submitBtn) {
     if (email) infoContato.push(email);
     const contatoFinal = infoContato.length > 0 ? infoContato.join(' / ') : 'Não informado';
 
-    // 1. Obter Coordenadas usando a API Nominatim (OpenStreetMap)
     let latitude = null;
     let longitude = null;
     const enderecoBusca = `${rua}, ${numero}, ${cidade}, Brasil`;
@@ -270,7 +257,6 @@ async function enviarParaAPI(formData, base64Img, submitBtn) {
         console.warn("Aviso: Falha ao procurar as coordenadas no mapa. O anúncio será guardado sem pino.", err);
     }
 
-    // 2. Construir o objeto JSON para a nossa API
     const novoAnuncio = {
         tipo: formData.get('tipo_anuncio'),
         especie: formData.get('especie'),
@@ -286,7 +272,6 @@ async function enviarParaAPI(formData, base64Img, submitBtn) {
         longitude: longitude
     };
 
-    // 3. Enviar para o servidor Node.js
     try {
         const resposta = await fetch('http://localhost:3000/api/anuncios', {
             method: 'POST',
@@ -299,7 +284,7 @@ async function enviarParaAPI(formData, base64Img, submitBtn) {
                 title: 'Sucesso!',
                 text: 'Anúncio enviado! Aparecerá no mapa após a aprovação.',
                 icon: 'success',
-                confirmButtonColor: '#e07a5f' // Cor do seu botão primário
+                confirmButtonColor: '#e07a5f' 
             }).then(() => {
                 window.location.href = "../index.html"; 
             });
@@ -350,7 +335,6 @@ function initMobileMenu() {
     });
 }
 
-// --- Lógica do Mapa Leaflet ---
 let mapaLeaflet;
 let grupoMarcadores;
 
@@ -358,7 +342,6 @@ function inicializarMapa() {
     const mapContainer = document.getElementById('mapa-anuncios');
     if (!mapContainer) return; 
 
-    // Inicializa o mapa com o scroll (roda do rato) desativado por defeito
     mapaLeaflet = L.map('mapa-anuncios', {
         scrollWheelZoom: false
     }).setView([-23.5505, -46.6333], 11);
@@ -369,11 +352,9 @@ function inicializarMapa() {
 
     grupoMarcadores = L.layerGroup().addTo(mapaLeaflet);
 
-    // Ativa o zoom com o scroll apenas quando o utilizador clica no mapa
     mapaLeaflet.on('focus', () => { mapaLeaflet.scrollWheelZoom.enable(); });
     mapaLeaflet.on('click', () => { mapaLeaflet.scrollWheelZoom.enable(); });
     
-    // Desativa novamente se o rato sair do mapa
     mapaLeaflet.on('mouseout', () => { mapaLeaflet.scrollWheelZoom.disable(); });
     mapaLeaflet.on('blur', () => { mapaLeaflet.scrollWheelZoom.disable(); });
 }
@@ -381,19 +362,15 @@ function inicializarMapa() {
 function atualizarPinosNoMapa(anuncios) {
     if (!mapaLeaflet || !grupoMarcadores) return;
 
-    // Limpa os pinos antigos
     grupoMarcadores.clearLayers();
 
     anuncios.forEach(anuncio => {
-        // Verifica se o anúncio tem coordenadas válidas gravadas no SQLite
         if (anuncio.latitude && anuncio.longitude) {
             
-            // Define a cor do marcador com base no tipo
-            let corPino = 'blue'; // Achado (padrão)
+            let corPino = 'blue'; 
             if (anuncio.tipo === 'perdido') corPino = 'red';
             else if (anuncio.tipo === 'adocao') corPino = 'green';
 
-            // Criar um ícone customizado (usando a API do Google Charts para simplificar)
             const iconePersonalizado = L.icon({
                 iconUrl: `http://maps.google.com/mapfiles/ms/icons/${corPino}-dot.png`,
                 iconSize: [32, 32],
@@ -401,7 +378,6 @@ function atualizarPinosNoMapa(anuncios) {
                 popupAnchor: [0, -32]
             });
 
-            // Cria o texto que aparece ao clicar no pino
             const nomeExibicao = anuncio.nome === 'Sem nome' ? anuncio.especie : anuncio.nome;
             const statusLabel = anuncio.tipo === 'perdido' ? 'Perdido' : (anuncio.tipo === 'achado' ? 'Encontrado' : 'Para Adoção');
             
@@ -413,7 +389,6 @@ function atualizarPinosNoMapa(anuncios) {
                 </div>
             `;
 
-            // Adiciona o marcador ao mapa
             L.marker([anuncio.latitude, anuncio.longitude], { icon: iconePersonalizado })
                 .addTo(grupoMarcadores)
                 .bindPopup(conteudoPopup);
@@ -421,17 +396,14 @@ function atualizarPinosNoMapa(anuncios) {
     });
 }
 
-// --- Lógica de Filtros do Mapa ---
 function initFiltrosMapa() {
     const statusMap = document.getElementById('map-filtro-status');
     const espMap = document.getElementById('map-filtro-especie');
     const cidMap = document.getElementById('map-filtro-cidade');
     const ruaMap = document.getElementById('map-filtro-rua');
 
-    // Se os elementos não existirem, não faz nada
     if (!statusMap) return;
 
-    // Adiciona escutadores para atualizar o mapa instantaneamente ao escrever/selecionar
     statusMap.addEventListener('change', aplicarFiltrosMapa);
     espMap.addEventListener('change', aplicarFiltrosMapa);
     cidMap.addEventListener('input', aplicarFiltrosMapa);
@@ -444,7 +416,6 @@ function aplicarFiltrosMapa() {
     const cidade = document.getElementById('map-filtro-cidade').value.toLowerCase();
     const rua = document.getElementById('map-filtro-rua').value.toLowerCase();
 
-    // Começa com a lista completa que veio da API
     let filtrados = anunciosGlobais;
 
     if (status !== 'todos') {
@@ -460,7 +431,6 @@ function aplicarFiltrosMapa() {
         filtrados = filtrados.filter(a => a.rua && a.rua.toLowerCase().includes(rua));
     }
 
-    // Envia a lista filtrada para desenhar os pinos
     atualizarPinosNoMapa(filtrados);
 }
 
@@ -495,7 +465,6 @@ function initBuscaCEP() {
     });
 }
 
-// --- Lógica de Compressão de Imagens ---
 function comprimirImagem(file, maxWidth, maxHeight, quality) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -509,7 +478,6 @@ function comprimirImagem(file, maxWidth, maxHeight, quality) {
                 let width = img.width;
                 let height = img.height;
 
-                // Calcula as novas dimensões mantendo a proporção
                 if (width > height) {
                     if (width > maxWidth) {
                         height = Math.round((height * maxWidth) / width);
@@ -521,15 +489,11 @@ function comprimirImagem(file, maxWidth, maxHeight, quality) {
                         height = maxHeight;
                     }
                 }
-
-                // Cria um canvas na memória e desenha a imagem redimensionada
                 const canvas = document.createElement('canvas');
                 canvas.width = width;
                 canvas.height = height;
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0, width, height);
-
-                // Converte para Base64 no formato JPEG com a qualidade especificada (0 a 1)
                 const base64Comprimido = canvas.toDataURL('image/jpeg', quality);
                 resolve(base64Comprimido);
             };

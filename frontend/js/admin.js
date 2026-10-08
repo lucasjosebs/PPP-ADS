@@ -1,12 +1,10 @@
-let anunciosGlobaisAdmin = []; // Armazena os dados para o modal
+let anunciosGlobaisAdmin = []; 
 
 document.addEventListener("DOMContentLoaded", () => {
     verificarSessao();
 
     document.getElementById('btn-login').addEventListener('click', fazerLogin);
     document.getElementById('btn-logout').addEventListener('click', fazerLogout);
-    
-    // Fechar modal
     document.getElementById('close-admin-modal').addEventListener('click', () => {
         document.getElementById('admin-modal').style.display = 'none';
     });
@@ -28,7 +26,6 @@ async function fazerLogin() {
             localStorage.setItem('farepet_admin_token', data.token);
             verificarSessao();
         } else {
-            // Substitui o texto em vermelho pelo SweetAlert
             Swal.fire({
                 title: 'Acesso Negado',
                 text: 'Usuário ou senha incorretos.',
@@ -77,7 +74,6 @@ async function carregarTabelaAdmin() {
 
             const btnVer = `<button class="btn-toggle btn-ver" onclick="abrirModal(${a.id})">Ver Foto</button>`;
 
-            // Lógica dos 3 estados: Pendente, Aprovado, Oculto
             if (a.status_publicacao === 'pendente') {
                 statusLabel = '<span style="color: #ed6c02; font-weight: 700;">Novo (Pendente)</span>';
                 botoesAcao = `
@@ -122,7 +118,6 @@ async function alterarStatus(id, novoStatus) {
         ? "Confirmar a publicação deste anúncio no site?" 
         : "Ocultar/Recusar este anúncio?";
         
-    // Caixa de confirmação moderna
     const confirmacao = await Swal.fire({
         title: 'Tem certeza?',
         text: msg,
@@ -144,7 +139,6 @@ async function alterarStatus(id, novoStatus) {
         });
 
         if (res.ok) {
-            // Aviso de sucesso que some sozinho
             Swal.fire({
                 title: 'Atualizado!',
                 text: 'O status do anúncio foi modificado.',
@@ -162,7 +156,6 @@ async function alterarStatus(id, novoStatus) {
     }
 }
 
-// Lógica para abrir o Modal e injetar os dados do anúncio selecionado
 function abrirModal(id) {
     const anuncio = anunciosGlobaisAdmin.find(a => a.id === id);
     if (!anuncio) return;
@@ -191,7 +184,6 @@ async function carregarMetricas() {
         if (res.ok) {
             const dados = await res.json();
             
-            // Animação leve (opcional) ou inserção direta
             document.getElementById('metric-pendentes').textContent = dados.pendentes;
             document.getElementById('metric-ativos').textContent = dados.ativos;
             document.getElementById('metric-perdidos').textContent = dados.perdidos;
