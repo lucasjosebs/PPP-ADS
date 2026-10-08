@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <!-- Cabeçalho -->
@@ -47,14 +50,34 @@
     </header>
 
     <main>
-        <!-- Seção Hero -->
+        <!-- Secção Hero -->
         <section class="hero">
             <h1>Ajude um animal a voltar para casa.</h1>
-            <p>Cadastre ou encontre avisos de animais perdidos e encontrados em São Paulo, com<br>opção de cadastro anônimo.</p>
+            <p>Cadastre ou encontre avisos de animais perdidos e encontrados, com<br>opção de cadastro anónimo.</p>
             
-            <div class="map-container">
-                <img class="map-placeholder" src="assets/mapa_exemplo_Farepet.png" alt="Mapa de São Paulo com ícones de localização de animais perdidos e encontrados">
+            <!-- Novos Filtros do Mapa -->
+            <div class="extra-filters" style="margin-bottom: 15px; justify-content: center;">
+                <select id="map-filtro-status" class="filter-input" style="flex: 0 1 auto; min-width: 150px;">
+                    <option value="todos">Todos os Status</option>
+                    <option value="perdido">Perdidos</option>
+                    <option value="achado">Encontrados</option>
+                    <option value="adocao">Para Adoção</option>
+                </select>
+                <select id="map-filtro-especie" class="filter-input" style="flex: 0 1 auto; min-width: 150px;">
+                    <option value="">Todas as Espécies</option>
+                    <option value="Cão">Cão</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Aves">Aves</option>
+                    <option value="Roedor">Roedor</option>
+                    <option value="Réptil">Réptil</option>
+                    <option value="Outros">Outros</option>
+                </select>
+                <input type="text" id="map-filtro-cidade" class="filter-input" placeholder="Cidade..." style="flex: 0 1 auto;">
+                <input type="text" id="map-filtro-rua" class="filter-input" placeholder="Rua / Av / Tv..." style="flex: 0 1 auto;">
             </div>
+
+            <!-- Mapa -->
+            <div id="mapa-anuncios" class="map-container" style="height: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 1;"></div>
         </section>
 
         <!-- Seção Anúncios Recentes -->

@@ -827,3 +827,25 @@ main {
         gap: 0;
     }
 }
+
+/* Ajuste de z-index para o mapa Leaflet não cobrir o header */
+.leaflet-container {
+    z-index: 1;
+    font-family: 'Inter', sans-serif;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 12px;
+}
+
+.leaflet-popup-content h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: var(--text-dark);
+}
+
+.leaflet-popup-content p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}

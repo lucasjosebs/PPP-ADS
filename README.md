@@ -8,53 +8,56 @@
 
 Projeto de Prática Profissional em Análise e Desenvolvimento de Sistemas (Faculdade Grau, disciplina *Projetos Profissionalizantes*).
 
-**Status:** 🚧 Em desenvolvimento (Etapa 4 — Desenvolvimento: Layout base do Front-end concluído)
+**Status:** ✅ Concluído (Versão Acadêmica Final)
 
 ---
 
 ## 📌 Sobre o projeto
 
-Quando um animal some, o tempo é decisivo. Hoje os avisos ficam espalhados em grupos de redes sociais, cartazes e mensagens que se perdem rápido. O **Farepet** centraliza esses avisos em um mapa, permitindo que:
+Quando um animal some, o tempo é decisivo[cite: 8]. Hoje os avisos ficam espalhados em grupos de redes sociais, cartazes e mensagens que se perdem rápido[cite: 8]. O **Farepet** centraliza esses avisos em um mapa, permitindo que[cite: 8]:
 
 - **Tutores** cadastrem o animal perdido, com fotos, descrição, contato e o local onde ele foi visto pela última vez.
 - **Quem encontrou** um animal cadastre onde ele foi localizado, com a opção de fazer isso **de forma anônima**.
 - **Interessados em adotar** consultem os animais encontrados em situação de abandono.
 
-A cidade inicial de cobertura é **São Paulo (SP)**.
+## ✨ Funcionalidades Implementadas
 
-## ✨ Funcionalidades do MVP
+- **Gestão de Anúncios:** Cadastro completo de animais perdidos, encontrados e adoção, com upload de fotos.
+- **Compressão de Imagens:** Redimensionamento inteligente no lado do cliente (via HTML5 Canvas) para conversão em Base64 leve, poupando espaço no banco de dados.
+- **Automação de Endereços (ViaCEP):** Preenchimento automático de logradouro e cidade a partir do CEP informado.
+- **Geocodificação (Nominatim):** Conversão automática dos endereços digitados em coordenadas geográficas (Latitude/Longitude).
+- **Mapa Interativo:** Visualização em tempo real dos anúncios aprovados em um mapa dinâmico utilizando a biblioteca Leaflet e mapas do OpenStreetMap.
+- **Painel Administrativo Restrito:** Ambiente seguro com autenticação para gestão da plataforma.
+- **Dashboard de Métricas:** Contadores em tempo real de publicações pendentes, ativas, animais perdidos e encontrados.
+- **Esteira de Aprovação:** Novos cadastros entram como "Pendentes" e exigem liberação do administrador antes de aparecerem no site público.
+- **Alertas Modernos:** Feedbacks interativos e responsivos utilizando a biblioteca SweetAlert2.
 
-- [x] Cadastro de animal **perdido** (formulário, foto, local, contato - *mockado via LocalStorage*)
-- [x] Cadastro de animal **encontrado** (com opção anônima - *mockado via LocalStorage*)
-- [ ] Visualização dos anúncios em **mapa** e lista (Filtros e lista de cards funcionais; mapa pendente de integração com Leaflet)
-- [x] Página/Modal de **detalhes** do anúncio (com informações dinâmicas e foto)
-- [x] Seção de **animais para adoção**
-
-**Fora do MVP (ideias futuras):** contas de usuário, notificações, cruzamento automático entre "perdido" e "encontrado", outras cidades.
-
-## 🛠️ Tecnologias
+## 🛠️ Tecnologias Utilizadas
 
 | Camada | Tecnologia |
 |---|---|
-| Front-end | HTML5, CSS3, JavaScript (Vanilla) e LocalStorage |
-| Mapa | Leaflet + OpenStreetMap (A implementar) |
-| Back-end | Node.js + Express (A implementar) |
-| Banco de dados | A definir (SQLite ou DynamoDB) |
-| Armazenamento de fotos | Amazon S3 (Planejado) |
-| Hospedagem | AWS (Planejado) |
+| **Front-end** | HTML5, CSS3, JavaScript (Vanilla), SweetAlert2 |
+| **Mapa e Localização** | Leaflet, OpenStreetMap, APIs Nominatim e ViaCEP |
+| **Back-end** | Node.js, Express, CORS |
+| **Banco de dados** | SQLite (Persistência em arquivo local único) |
+| **Integração Contínua** | GitHub Actions (Deploy automatizado do Frontend) |
 
 ## 📁 Estrutura do repositório
 
 ```text
 PPP_ADS/
-├── docs/          # Project Charter, personas e user stories.
-├── frontend/      # Front-end da aplicação
+├── backend/       # Servidor da Aplicação
+│   ├── database.js # Configuração e criação automática das tabelas
+│   ├── server.js   # Endpoints da API RESTful
+│   └── farepet.db  # Banco de dados SQLite (gerado na primeira execução)
+├── docs/          # Project Charter, personas e user stories
+├── frontend/      # Interface Visual
 │   ├── assets/    # Imagens e logotipos do projeto
 │   ├── css/       # Arquivos de estilização (style.css)
-│   ├── html/      # Páginas secundárias (cadastro.html)
-│   ├── js/        # Scripts e lógicas da página (script.js)
-│   └── index.html # Página principal (Home)
-├── backend/       # API (Node.js + Express) - Vazio no momento
+│   ├── html/      # Páginas de cadastro e painel admin
+│   ├── js/        # Lógicas do sistema (script.js, admin.js)
+│   └── index.html # Página principal (Home) e Mapa
+├── .github/       # Regras do Actions para Deploy no Pages
 ├── LICENSE        # Licença do projeto
 └── README.md      # Documentação principal
 ```
@@ -76,13 +79,35 @@ Como o projeto encontra-se na fase de front-end com dados simulados via LocalSto
 
 1. Clone este repositório em sua máquina:
 ```bash
-git clone [https://github.com/lucasjosebs/PPP-ADS.git](https://github.com/lucasjosebs/PPP-ADS.git)
+git clone https://github.com/lucasjosebs/PPP-ADS.git
 ```
-2. Navegue até a pasta de frontend do projeto:
+2. Navegue até a pasta do Backend:
 ```bash
-cd PPP-ADS/frontend
+cd PPP-ADS/backend
 ```
-3. Abra o arquivo `index.html` em qualquer navegador web (Chrome, Firefox, Edge, etc.).
+3. Instale as dependências da API (Express, SQLite, etc.):
+```bash
+npm install
+```
+4. Inicie o servidor:
+```bash
+node server.js
+```
+> O terminal exibirá a mensagem: "Servidor rodando em http://localhost:3000" e o banco `farepet.db` será criado.
+
+5. Acesse a Aplicação: </br>
+Mantenha o terminal aberto rodando o servidor. Navegue até a pasta frontend e abra o arquivo `index.html` em qualquer navegador web (recomendado o uso da extensão Live Server no VS Code ou abertura direta do arquivo).
+
+### 🔐 Acesso ao Painel Administrativo 
+
+Para acessar a esteira de aprovações e o dashboard:
+
+- Acesse: `frontend/html/admin.html`
+
+- Usuário: `admin`
+
+- Senha: `farepet2026`
+  
 
 ## 🗺️ Roadmap
 
@@ -91,9 +116,10 @@ cd PPP-ADS/frontend
 | 1 | Kickoff: Project Charter e repositório | ✅ Concluído |
 | 2 | Concepção: personas, user stories e MVP | ✅ Concluído |
 | 3 | Organização: backlog e quadro Kanban | ✅ Concluído |
-| 4 | Desenvolvimento em sprints | 🔄 Em andamento |
-| 5 | Testes e validação | ⏳ Pendente |
-| 6 | Encerramento: relatório e apresentação | ⏳ Pendente |
+| 4 | Desenvolvimento Frontend UI/UX | ✅ Concluído |
+| 5 | Implementação Full-Stack (Node.js + SQLite) | ✅ Concluído |
+| 6 | Integração Geográfica (Leaflet/Nominatim/ViaCEP) | ✅ Concluído |
+| 7 | Encerramento: relatório e apresentação | 🔄 Em andamento  |
 
 ## 👤 Autor
 
